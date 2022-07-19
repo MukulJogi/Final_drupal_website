@@ -1,0 +1,4 @@
+name: "First Module"
+description: "Our First Module"
+type: module
+core_version_requirement: ^8.8.0 || ^9 || ^10

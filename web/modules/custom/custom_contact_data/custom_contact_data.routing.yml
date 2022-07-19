@@ -1,0 +1,17 @@
+custom_contact_data.customform:
+  path: '/custom-form'
+  defaults:
+   # _form: '\Drupal\custom_contact_data\Form\custom_contact_dataForm'
+    _controller: '\Drupal\custom_contact_data\Controller\custom_contact_dataController::createcontact'
+    _title: 'Contact Data Form'
+  requirements: 
+    _permission: 'access content'
+
+
+
+custom_contact_data.contactlist:
+  path: '/contact-list'
+  defaults:
+    _controller: '\Drupal\custom_contact_data\Controller\custom_contact_dataController::getcontact'
+  requirements:
+    _permission: 'access content'

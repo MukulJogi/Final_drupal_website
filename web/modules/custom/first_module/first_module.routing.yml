@@ -1,0 +1,17 @@
+first_module.hello:
+  path: '/Hello-world'
+  defaults:
+    _controller: '\Drupal\first_module\Controller\HelloController::sayHelloWorld'
+    _title: 'Welcome to My Module in Drupal 9'
+  requirements: 
+    _permission: 'access content'
+
+
+first_module.customform:
+  path: '/custom-form'
+  defaults:
+    _form: '\Drupal\first_module\Form\CustomForm'
+    _title: 'our form'
+  requirements: 
+    _permission: 'access content'
+

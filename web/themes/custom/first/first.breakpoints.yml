@@ -1,0 +1,18 @@
+first.mobile:
+  label: mobile
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+first.narrow:
+  label: narrow
+  mediaQuery: 'all and (min-width: 767px) and (max-width: 1200px)'
+  weight: 1
+  multipliers:
+    - 1x
+first.wide:
+  label: wide
+  mediaQuery: 'all and (min-width: 1200px)'
+  weight: 2
+  multipliers:
+    - 1x

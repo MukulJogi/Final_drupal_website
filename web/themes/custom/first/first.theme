@@ -1,0 +1,5 @@
+<?php
+
+function first_preprocess_node__12(&$variables) {
+    $variables['custom_date'] = date('d/m/Y');
+}

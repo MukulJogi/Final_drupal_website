@@ -1,0 +1,17 @@
+name: First Theme
+type: theme
+description: 'My first custom theme'
+core_version_requirement: ^8 || ^9
+base theme: stable
+
+libraries: 
+  - first/global-theme-library 
+  - first/external-libs
+  - first/menu-js
+  - first/sass-css
+
+regions:
+  primary_menu: "Primary menu"
+  highlighted: "Highlighted"
+  content: "Content"
+  footer: "Footer"

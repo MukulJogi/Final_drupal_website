@@ -1,0 +1,93 @@
+<?php
+
+
+/**
+* Implements hook_views_query_alter().
+*/
+
+function first_module_views_query_alter($view,$query) {
+
+    
+        // (Example assuming a view with an exposed filter on node title.)
+        // If the input for the title filter is a positive integer, filter against
+        // node ID instead of node title.
+       // kint($view->id());
+        if ($view->id() == "hook") {
+            // Traverse through the 'where' part of the query.
+            foreach ($query->where as &$condition_group) {
+                foreach ($condition_group['conditions'] as &$condition) {
+                    //kint($condition);
+                    // If this is the part of the query filtering on title, chang the
+                    // condition to filter on node ID.
+                    if ($condition['field'] == 'node__field_data.type')
+                    {
+                        $condition = [
+                            'field' => 'node__field_data.type)',
+                            'value' => [
+                                'news'
+                            ],
+                            'operator' => 'in'
+                        ];
+                    }
+                }
+            }
+        }
+    
+}
+
+/**
+* Implements hook_form_alter().
+*/
+
+function first_module_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+    if($form_id=='node_article_form'){
+        $form['title']['widget'][0]['value']['#default_value'] = "Welcome";
+    }
+
+}
+
+function first_module_node_form_submit(array &$form, Drupal\Core\Form\FormStateInterface $form_state) 
+{
+    // if ($form_id == 'node_hook_operation_form' || $form_id == 'node_hook_operation_edit_form')
+    // {
+    // ksm($form);
+    $age = $form_state->getValue('field_age')[0]['value'];
+    $typedata = (int)$age;
+    // ksm($typedata);
+
+    if(!$typedata)
+    {
+        $form_state->setErrorByName($age= "field_age", $message = 'error!! age should be int');
+    }
+
+    if(($age < 1 || $age > 100))
+    {
+        $form_state->setErrorByName($age= "field_age", $message = 'error!! age should be between 1-100');
+    }
+// }
+    
+}
+
+function first_module_node_presave(Drupal\Core\Entity\EntityInterface $node)
+{
+    if($node->bundle() == "maturity"){
+        $age = $node->get('field_age')->getString();
+
+        if($age >=13 && $age < 18){
+            $node->set('field_maturity','Teen');
+
+        }
+
+        else if($age >=18 && $age <60)
+        {
+            $node->field_maturity->value = 'Adult';
+        }
+        else if($age >=60 && $age <100)
+        {
+            $node->field_maturity->value = 'Old';
+        }
+
+
+    }
+}

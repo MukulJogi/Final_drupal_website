@@ -1,0 +1,74 @@
+<?php
+
+
+/**
+ *  hook_install()
+ */
+function first_module_install() {
+  $values = [
+    [
+      'uid' => 1,
+      'name' => 'jhon',
+      'age' => 30,
+    ],
+    [
+      'uid' => 2,
+      'name' => 'jon',
+      'age' => 28,
+    ],
+    [
+      'uid' => 3,
+      'name' => 'kk',
+      'age' => 28,
+    ],
+    [
+      'uid' => 4,
+      'name' => 'goyal',
+      'age' => 28,
+    ],
+  ];
+  $database = \Drupal::database();
+  $query = $database->insert('dev')->fields(['uid', 'name', 'age']);
+  foreach ($values as $developer) {
+    $query->values($developer);
+  }
+  $query->execute();
+
+}
+
+/**
+ * hook_schema()
+ */
+function first_module_schema() 
+{
+  \Drupal::logger('first_module')->notice("fucntion called");
+
+  $schema['dev'] = [
+    'fields' =>[
+      'uid' =>[
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => "Creator user's uid",
+      ],
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'Name of the developer.',
+      ],
+      'age' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'tiny',
+        'description' => 'The age of the developer in years.',
+      ],
+     ],
+    'primary key' => ['uid'],
+    'indexes' => [
+      'uid' => ['uid'],
+      'name' => ['name'],
+    ],
+  ];
+  return $schema;
+}

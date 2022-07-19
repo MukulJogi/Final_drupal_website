@@ -1,0 +1,5 @@
+name: "custom_contact_data"
+description: "Conatct data"
+type: module
+core_version_requirement: ^8.8.0 || ^9 || ^10
+package: Custom Module

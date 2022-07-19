@@ -1,0 +1,4 @@
+global-theme-library:
+ css:
+   component:
+     css/style1.css: { }

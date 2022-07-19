@@ -1,0 +1,55 @@
+<?php
+
+use phpDocumentor\Reflection\PseudoTypes\True_;
+
+    function custom_contact_data_schema(){
+        $schema['contact'] = [
+            'fields'=>[
+                'id'=>[
+                    'description'=>'contact id',
+                    'type'=>'serial',
+                    'not null'=>TRUE
+                ],
+                'name'=>[
+                    'type'=>'varchar',
+                    'length'=>50,
+                    'not null'=>TRUE
+                ],
+                'gender'=>[
+                    'type'=>'varchar',
+                    'length'=>50,
+                    'not null'=>TRUE
+                ],
+                'phone'=>[
+                    'type'=>'varchar',
+                    'length'=>50,
+                    'not null'=>TRUE
+                ],
+                'email'=>[
+                    'type'=>'varchar',
+                    'length'=>50,
+                    'not null'=>TRUE
+                ],
+                'address'=>[
+                    'type'=>'text',
+                    'length'=>50,
+                    'not null'=>TRUE
+                ],
+                'city'=>[
+                    'type'=>'text',
+                    'length'=>50,
+                    'not null'=>True
+                ],
+                'create_date'=>[
+                    'mysql_type'=>'timestamp',
+                    'not null'=>TRUE
+                ]
+                ],
+            'primary key'=>['id'],
+            'indexes'=>[
+                'id'=>['id'],
+                'name'=>['name']
+            ]
+            ];
+            return $schema;
+    }
